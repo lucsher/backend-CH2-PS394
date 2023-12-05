@@ -5,4 +5,10 @@ const db = new Sequelize('setravel_db', 'admin_project', '',{
     dialect: "mysql"
 });
 
+// const db = new Sequelize('citiesdb', 'root', '',{
+//     host: "localhost",
+//     dialect: "mysql"
+// });
+
+
 export default db;
