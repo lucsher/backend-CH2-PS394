@@ -9,7 +9,7 @@ const Kuliner = db.define('kuliner', {
     nama_kuliner:{
         type: Sequelize.STRING
     },
-    description: {
+    deskripsi: {
         type: Sequelize.TEXT
     },
     jenis: {
