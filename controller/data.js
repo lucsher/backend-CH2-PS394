@@ -80,7 +80,7 @@ export const getAllPlace = async(req, res) => {
     try{
         const places = await Destination.findAll({
             attributes: ['Place_Name', 'Description', 'City', 'Price', 'Rating'],
-            group: ['Place_Name']
+            group: ['Place_Name', 'Description', 'City', 'Price', 'Rating']
         });
         res.json(places);
     }catch(error){
