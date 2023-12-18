@@ -16,6 +16,13 @@ export const getUsers = async(req, res) => {
 export const Register = async(req, res) => {
     const {username, email, password, confirmPassword} = req.body;
     if (password !== confirmPassword) return res.status(400).json({msg: "Password and Confirm Password do not match!"});
+    if(!username) return res.status(200).json({msg: "Username must be filled!"});
+    if(!email) return res.status(200).json({msg: "Email must be filled!"});
+    if(!password && !confirmPassword) return res.status(200).json({msg: "Password must be filled!"});
+    const existingUser = await Users.findOne({where:{email}});
+    if(existingUser) return res.status(200).json({msg: "Email already exist!"});
+    const existingName = await Users.findOne({where:{username}});
+    if(existingName) return res.status(200).json({msg: "Username already exist!"});
     const salt = await bcrypt.genSalt();
     const hashPassword = await bcrypt.hash(password, salt);
     try{
