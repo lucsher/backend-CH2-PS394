@@ -5,8 +5,8 @@ import Kuliner from "../models/kulinermodel.js";
 export const getAllfood = async(req, res) => {
     try{
         const food = await Kuliner.findAll({
-            attributes: ['nama_kuliner', 'deskripsi', 'jenis', 'asal_kota', 'image_url'],
-            group: ['nama_kuliner', 'deskripsi', 'jenis', 'asal_kota', 'image_url']
+            attributes: ['nama_kuliner', 'deskripsi', 'image_url'],
+            group: ['nama_kuliner', 'deskripsi', 'image_url']
         });
         res.json(food);
     }catch(error){
