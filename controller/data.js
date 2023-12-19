@@ -5,7 +5,7 @@ export const getAllCities = async(req, res) => {
     try{
         const cities = await Destination.findAll({
             attributes: ['City', 'City_image'],
-            group: ['City']
+            group: ['City', 'City_image']
         });
         res.json(cities);
     }catch(error){
