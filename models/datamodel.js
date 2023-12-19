@@ -29,6 +29,9 @@ const Destination = db.define('Destination', {
     Rating: {
         type: Sequelize.FLOAT
     },
+    Potensi_bencana: {
+        type: Sequelize.STRING
+    },
     City_image: {
         type: Sequelize.FLOAT
     },
