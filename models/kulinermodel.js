@@ -2,7 +2,7 @@ import { Sequelize } from "sequelize";
 import db from "../config/db.js";
 
 const Kuliner = db.define('kuliner', {
-    id:{
+    kuliner_id:{
         type: Sequelize.INTEGER,
         primaryKey: true,
     },
