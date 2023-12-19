@@ -4,7 +4,7 @@ import { Sequelize } from "sequelize";
 export const getAllCities = async(req, res) => {
     try{
         const cities = await Destination.findAll({
-            attributes: ['City'],
+            attributes: ['City', 'City_image'],
             group: ['City']
         });
         res.json(cities);
@@ -32,7 +32,8 @@ export const getCity = async (req, res) => {
         const cityData = await Destination.findAll({
             where: {
                 City: city
-            }
+            },
+            attributes: ['Place_Name', 'Description', 'Place_Image']
         });
         res.json(cityData);
     } catch (error) {
@@ -48,7 +49,8 @@ export const getCategory = async (req, res) => {
         const categoryData = await Destination.findAll({
             where: {
                 Category: category
-            }
+            },
+            attributes: ['Place_Name', 'Description', 'Place_Image']
         });
         res.json(categoryData);
     } catch (error) {
@@ -67,7 +69,18 @@ export const getPlaceName = async (req, res) => {
                 Place_Name: {
                     [Sequelize.Op.like]: `%${name}%`
                 }
-            }
+            },
+            attributes: [
+                'Place_Name',
+                'Description',
+                'City',
+                'Category',
+                'Address',
+                'Location',
+                'Price',
+                'Rating',
+                'Place_Image'
+            ]
         });
         res.json(places);
     } catch (error) {
@@ -79,8 +92,8 @@ export const getPlaceName = async (req, res) => {
 export const getAllPlace = async(req, res) => {
     try{
         const places = await Destination.findAll({
-            attributes: ['Place_Name', 'Description', 'City', 'Price', 'Rating'],
-            group: ['Place_Name', 'Description', 'City', 'Price', 'Rating']
+            attributes: ['Place_Name', 'Description', 'Place_image'],
+            group: ['Place_Name', 'Description', 'Place_image']
         });
         res.json(places);
     }catch(error){
