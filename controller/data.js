@@ -79,6 +79,7 @@ export const getPlaceName = async (req, res) => {
                 'Location',
                 'Price',
                 'Rating',
+                'Potensi_bencana',
                 'Place_Image'
             ]
         });
