@@ -20,10 +20,19 @@ const Destination = db.define('Destination', {
     Address: {
         type: Sequelize.TEXT
     },
+    Location: {
+        type: Sequelize.STRING
+    },
     Price: {
         type: Sequelize.DECIMAL(10, 2)
     },
     Rating: {
+        type: Sequelize.FLOAT
+    },
+    City_image: {
+        type: Sequelize.FLOAT
+    },
+    Place_image: {
         type: Sequelize.FLOAT
     }
 },{
