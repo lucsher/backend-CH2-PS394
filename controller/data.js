@@ -1,6 +1,7 @@
 import Destination from "../models/datamodel.js";
 import { Sequelize } from "sequelize";
 
+//Get all cities available
 export const getAllCities = async(req, res) => {
     try{
         const cities = await Destination.findAll({
@@ -13,18 +14,7 @@ export const getAllCities = async(req, res) => {
     }
 }
 
-export const getAllCategories = async(req, res) => {
-    try{
-        const categories = await Destination.findAll({
-            attributes: ['Category'],
-            group: ['Category']
-        });
-        res.json(categories);
-    }catch(error){
-        console.log(error);
-    }
-}
-
+//find place by city
 export const getCity = async (req, res) => {
     const city = req.params.city;
 
@@ -42,6 +32,20 @@ export const getCity = async (req, res) => {
     }
 };
 
+//get all categoty available
+export const getAllCategories = async(req, res) => {
+    try{
+        const categories = await Destination.findAll({
+            attributes: ['Category'],
+            group: ['Category']
+        });
+        res.json(categories);
+    }catch(error){
+        console.log(error);
+    }
+}
+
+//find place by category
 export const getCategory = async (req, res) => {
     const category = req.params.category;
 
@@ -60,6 +64,21 @@ export const getCategory = async (req, res) => {
 };
 
 
+//get all place available
+export const getAllPlace = async(req, res) => {
+    try{
+        const places = await Destination.findAll({
+            attributes: ['Place_Name', 'Description', 'Place_image'],
+            group: ['Place_Name', 'Description', 'Place_image']
+        });
+        res.json(places);
+    }catch(error){
+        console.log(error);
+    }
+}
+
+
+//find place by name
 export const getPlaceName = async (req, res) => {
     const name = req.params.name;
 
@@ -87,17 +106,5 @@ export const getPlaceName = async (req, res) => {
     } catch (error) {
         console.error(error);
         res.status(500).json({ message: "Internal server error" });
-    }
-}
-
-export const getAllPlace = async(req, res) => {
-    try{
-        const places = await Destination.findAll({
-            attributes: ['Place_Name', 'Description', 'Place_image'],
-            group: ['Place_Name', 'Description', 'Place_image']
-        });
-        res.json(places);
-    }catch(error){
-        console.log(error);
     }
 }
