@@ -5,12 +5,12 @@ dotenv.config()
 
 
 const db = new Sequelize({
-   dialect: 'mysql', // Change this to 'postgres' if using PostgreSQL
+   dialect: 'mysql', 
     username: process.env.DB_USERNAME,
     password: process.env.DB_PASSWORD,
     database: process.env.DB_NAME,
-    host: process.env.DB_HOST, // Replace with your Cloud SQL instance IP
-    port: '3306', // Replace with your Cloud SQL instance port
+    host: process.env.DB_HOST, 
+    port: '3306', 
     socketPath: '/cloudsql/capstone-setravel:asia-southeast2:setravel',
-    logging: false // Set to true to log SQL queries (optional)
+    logging: false 
 });
