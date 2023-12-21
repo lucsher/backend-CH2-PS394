@@ -38,53 +38,40 @@ export const Register = async(req, res) => {
 }
 
 
-export const Login = async (req, res) => {
-    try {
-        const { email, password } = req.body;
-
-        // Validate email and password
-        if (!email || !password) {
-            return res.status(400).json({ msg: "Email and password are required" });
-        }
-
-        const user = await Users.findOne({
-            where: { email }
+export const Login = async(req,res) => {
+    try{
+        const user = await Users.findAll({
+            where:{
+                email: req.body.email
+            }
         });
-
-        if (!user) {
-            return res.status(400).json({ msg: "User not found" });
-        }
-
-        const match = await bcrypt.compare(password, user.password);
-
-        if (!match) {
-            return res.status(400).json({ msg: "Incorrect Password" });
-        }
-
-        const { id: userId, username } = user;
-        const accessToken = jwt.sign({ userId, username, email }, process.env.ACCESS_TOKEN_SECRET, {
-            expiresIn: '20s' 
+        const match = await bcrypt.compare(req.body.password, user[0].password);
+        if (!match) return res.status(400).json({msg: "Incorrect Password"});
+        const userId = user[0].id;
+        const username = user[0].username;
+        const email = user[0].email;
+        const accessToken = jwt.sign({userId, username, email}, process.env.ACCESS_TOKEN_SECRET, {
+            expiresIn: '20s'
         });
-
-        const refreshToken = jwt.sign({ userId, username, email }, process.env.REFRESH_TOKEN_SECRET, {
+        const refreshToken = jwt.sign({userId, username, email}, process.env.REFRESH_TOKEN_SECRET, {
             expiresIn: '1d'
         });
-
-        await Users.update({ refresh_token: refreshToken }, {
-            where: { id: userId }
+        await Users.update({refresh_token:refreshToken},{
+            where:{
+                id: userId
+            }
         });
-
-        res.cookie('refreshtoken', refreshToken, {
+        res.cookie('refreshtoken', refreshToken,{
             httpOnly: true,
             maxAge: 24 * 60 * 60 * 1000
-        });
 
-        res.json({ accessToken });
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ msg: "Server Error" }); 
+        });
+        res.json({accessToken});
+
+    }catch(error){
+        console.log(error)
     }
-};
+}
 
 export const Logout =async(req,res) => {
     const refreshToken = req.cookies.refreshtoken;
