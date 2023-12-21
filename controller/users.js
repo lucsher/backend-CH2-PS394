@@ -1,8 +1,6 @@
 import Users from "../models/usermodel.js"; 
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import dotenv from 'dotenv'
-dotenv.config()
 
 export const getUsers = async(req, res) => {
     try{
