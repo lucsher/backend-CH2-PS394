@@ -10,7 +10,7 @@ DB_PASSWORD=<user password> //username in cloud sql
 DB_NAME=<db name> //username in cloud sql
 DB_HOST=<host ip> v//username in cloud sql
 ```
-also change the ```port``` and ```socket``` in [db.js]config\db.js according what's in your Cloud SQL. We used MySQL for this API. 
+also change the ```port``` and ```socket``` in [db.js](config\db.js) according what's in your Cloud SQL. We used MySQL for this API. 
 
 To run API, run 
 ```
