@@ -2,7 +2,7 @@ import express from "express";
 import {getUsers, Register, Login, Logout} from "../controller/users.js"
 import { verifyToken } from "../middleware/verifytoken.js";
 import { refreshToken } from "../controller/refreshtoken.js";
-import { getAllCities, getAllCategories, getCity, getCategory, getPlaceName, getAllPlace } from "../controller/data.js";
+import { getAllCities, getAllCategories, getCity, getCategory, getAllPlace } from "../controller/data.js";
 import {getAllfood, getFoodName,} from "../controller/food.js"
 
 const router = express.Router();
@@ -18,7 +18,6 @@ router.get('/categories', getAllCategories)
 router.get('/cities/:city', getCity)
 router.get('/categories/:category', getCategory)
 router.get('/place', getAllPlace)
-router.get('/place/:name', getPlaceName)
 
 router.get('/food/', getAllfood)
 router.get('/food/:name', getFoodName)
