@@ -50,10 +50,10 @@ export const Login = async(req,res) => {
         const userId = user[0].id;
         const username = user[0].username;
         const email = user[0].email;
-        const accessToken = jwt.sign({userId, username, email}, process.env.ACCESS_TOKEN_SECRET, {
+        const accessToken = jwt.sign({userId, username, email}, sup02i2bnqs9zmxulin0o3mshky8tujhude0k3bdrmxuv3bg3s3pqikdyof1v197, {
             expiresIn: '20s'
         });
-        const refreshToken = jwt.sign({userId, username, email}, process.env.REFRESH_TOKEN_SECRET, {
+        const refreshToken = jwt.sign({userId, username, email}, 7h6xn1tn795c5bn7acperr6mp9qov9vxr00jwlh5krpvsandf1fb9mbvue0omqnk, {
             expiresIn: '1d'
         });
         await Users.update({refresh_token:refreshToken},{
