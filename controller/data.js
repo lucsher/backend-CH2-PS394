@@ -1,7 +1,6 @@
 import Destination from "../models/datamodel.js";
 import { Sequelize } from "sequelize";
 
-//Get all cities available
 export const getAllCities = async(req, res) => {
     try{
         const cities = await Destination.findAll({
@@ -14,25 +13,6 @@ export const getAllCities = async(req, res) => {
     }
 }
 
-//find place by city
-export const getCity = async (req, res) => {
-    const city = req.params.city;
-
-    try {
-        const cityData = await Destination.findAll({
-            where: {
-                City: city
-            },
-            attributes: ['Place_Name', 'Description', 'Place_Image']
-        });
-        res.json(cityData);
-    } catch (error) {
-        console.log(error);
-        res.status(404).json({ message: "City not found" });
-    }
-};
-
-//get all categoty available
 export const getAllCategories = async(req, res) => {
     try{
         const categories = await Destination.findAll({
@@ -45,49 +25,13 @@ export const getAllCategories = async(req, res) => {
     }
 }
 
-//find place by category
-export const getCategory = async (req, res) => {
-    const category = req.params.category;
+export const getCity = async (req, res) => {
+    const city = req.params.city;
 
     try {
-        const categoryData = await Destination.findAll({
+        const cityData = await Destination.findAll({
             where: {
-                Category: category
-            },
-            attributes: ['Place_Name', 'Description', 'Place_Image']
-        });
-        res.json(categoryData);
-    } catch (error) {
-        console.log(error);
-        res.status(404).json({ message: "Category not found" });
-    }
-};
-
-
-//get all place available
-export const getAllPlace = async(req, res) => {
-    try{
-        const places = await Destination.findAll({
-            attributes: ['Place_Name', 'Description', 'Place_image'],
-            group: ['Place_Name', 'Description', 'Place_image']
-        });
-        res.json(places);
-    }catch(error){
-        console.log(error);
-    }
-}
-
-
-//find place by name
-export const getPlaceName = async (req, res) => {
-    const name = req.params.name;
-
-    try {
-        const places = await Destination.findAll({
-            where: {
-                Place_Name: {
-                    [Sequelize.Op.like]: `%${name}%`
-                }
+                City: city
             },
             attributes: [
                 'Place_Name',
@@ -102,9 +46,58 @@ export const getPlaceName = async (req, res) => {
                 'Place_Image'
             ]
         });
-        res.json(places);
+        res.json(cityData);
     } catch (error) {
-        console.error(error);
-        res.status(500).json({ message: "Internal server error" });
+        console.log(error);
+        res.status(404).json({ message: "City not found" });
+    }
+};
+
+export const getCategory = async (req, res) => {
+    const category = req.params.category;
+    try {
+        const categoryData = await Destination.findAll({
+            where: {
+                Category: category
+            },
+            attributes: [
+                'Place_Name',
+                'Description',
+                'City',
+                'Category',
+                'Address',
+                'Location',
+                'Price',
+                'Rating',
+                'Potensi_bencana',
+                'Place_Image'
+            ]
+        });
+        res.json(categoryData);
+    } catch (error) {
+        console.log(error);
+        res.status(404).json({ message: "Category not found" });
+    }
+};
+
+export const getAllPlace = async(req, res) => {
+    try{
+        const places = await Destination.findAll({
+            attributes: [
+                'Place_Name',
+                'Description',
+                'City',
+                'Category',
+                'Address',
+                'Location',
+                'Price',
+                'Rating',
+                'Potensi_bencana',
+                'Place_Image'
+            ]
+        });
+        res.json(places);
+    }catch(error){
+        console.log(error);
     }
 }
