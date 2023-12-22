@@ -39,16 +39,16 @@ const Destination = db.define('Destination', {
         type: Sequelize.FLOAT
     },
     Jumlah_Penduduk: {
-        type: Sequelize.FLOAT
+        type: Sequelize.INTEGER
     },
     Jumlah_Crime: {
-        type: Sequelize.FLOAT
+        type: Sequelize.INTEGER
     },
     Crime_per_Capita: {
-        type: Sequelize.FLOAT
+        type: Sequelize.DECIMAL
     },
     Criminal_Rate: {
-        type: Sequelize.FLOAT
+        type: Sequelize.DECIMAL
     }
 },{
     tableName: 'destination',
