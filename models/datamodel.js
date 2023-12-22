@@ -37,6 +37,18 @@ const Destination = db.define('Destination', {
     },
     Place_image: {
         type: Sequelize.FLOAT
+    },
+        Jumlah_Penduduk: {
+        type: Sequelize.FLOAT
+    },
+    Jumlah_Crime: {
+        type: Sequelize.FLOAT
+    },
+    Crime_per_Capita: {
+        type: Sequelize.FLOAT
+    },
+    Criminal_Rate: {
+        type: Sequelize.FLOAT
     }
 },{
     tableName: 'destination',
