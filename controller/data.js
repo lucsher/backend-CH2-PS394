@@ -99,7 +99,10 @@ export const getAllPlace = async(req, res) => {
                 'Price',
                 'Rating',
                 'Potensi_bencana',
-                'Place_Image'
+                'Place_Image',
+                'Jumlah_Penduduk',
+                'Jumlah_Crime',
+                'Crime_per_Capita'
             ]
         });
         res.json(places);
